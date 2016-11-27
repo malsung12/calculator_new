@@ -6,12 +6,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RenewalayoutActivity extends AppCompatActivity {
     EditText editText, editText2;
-    Button button, button2, button3, button4;
+    Button button, button2, button3, button4, button5;
     TextView textResult;
-    int num1, num2;
+    int num1, num2,sr;
     Integer Result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class RenewalayoutActivity extends AppCompatActivity {
         button2 =  (Button) findViewById(R.id.button2);
         button3 =  (Button) findViewById(R.id.button3);
         button4 =  (Button) findViewById(R.id.button4);
+        button5 =  (Button) findViewById(R.id.button5);
         textResult= (TextView) findViewById(R.id.textView);
 
         View.OnClickListener clisten = new View.OnClickListener() {
@@ -34,8 +36,8 @@ public class RenewalayoutActivity extends AppCompatActivity {
 
                 switch (v.getId()) {
                     case R.id.button:
-                        Result = num1 + num2;
-                        break;
+                            Result = num1 + num2;
+                            break;
                     case R.id.button2:
                         Result = num1 - num2;
                         break;
@@ -45,6 +47,14 @@ public class RenewalayoutActivity extends AppCompatActivity {
                     case R.id.button4:
                         Result = num1 / num2;
                         break;
+                    case R.id.button5:
+                        if(num1 == 0 || num2 ==0){
+                            Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_LONG).show();
+                            Result = 0;
+                            break;
+                        }
+                        Result = num1 % num2;
+                        break;
                 }
                 textResult.setText("계산결과: " + Result);
             }
@@ -53,5 +63,7 @@ public class RenewalayoutActivity extends AppCompatActivity {
         button2.setOnClickListener(clisten);
         button3.setOnClickListener(clisten);
         button4.setOnClickListener(clisten);
+        button5.setOnClickListener(clisten);
+
     }
 }
